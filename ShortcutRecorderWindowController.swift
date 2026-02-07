@@ -10,6 +10,8 @@ final class ShortcutRecorderWindowController: NSWindowController {
     private var isRecording = false
     private var eventMonitor: Any?
     private var onSave: ((UInt32, UInt32) -> Void)?
+    private var currentShortcutKeyCode: UInt32?
+    private var currentShortcutModifiers: UInt32?
 
     override init(window: NSWindow?) {
         self.panel = NSPanel(
@@ -19,23 +21,32 @@ final class ShortcutRecorderWindowController: NSWindowController {
             defer: false
         )
 
-        self.infoLabel = NSTextField(labelWithString: "Click Record, then press a new shortcut")
+        self.infoLabel = NSTextField(labelWithString: "")
         self.currentLabel = NSTextField(labelWithString: "")
-        self.recordButton = NSButton(title: "Record", target: nil, action: nil)
+        self.recordButton = NSButton(title: "", target: nil, action: nil)
 
         super.init(window: panel)
         setupUI()
+        updateLocalization()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(languageDidChange),
+            name: LanguageManager.didChangeNotification,
+            object: nil
+        )
     }
 
     required init?(coder: NSCoder) { nil }
 
     func present(currentKeyCode: UInt32, currentModifiers: UInt32, onSave: @escaping (UInt32, UInt32) -> Void) {
         self.onSave = onSave
-        currentLabel.stringValue = "Current: \(formatShortcut(keyCode: currentKeyCode, modifiers: currentModifiers))"
+        currentShortcutKeyCode = currentKeyCode
+        currentShortcutModifiers = currentModifiers
 
         isRecording = false
-        recordButton.title = "Record"
         stopMonitoring()
+        updateLocalization()
 
         showWindow(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -44,7 +55,7 @@ final class ShortcutRecorderWindowController: NSWindowController {
     }
 
     private func setupUI() {
-        panel.title = "Change Shortcut"
+        panel.title = L("shortcut_change_title")
 
         infoLabel.font = NSFont.systemFont(ofSize: 13, weight: .regular)
         currentLabel.font = NSFont.systemFont(ofSize: 13, weight: .regular)
@@ -72,7 +83,7 @@ final class ShortcutRecorderWindowController: NSWindowController {
 
     @objc private func toggleRecord() {
         isRecording.toggle()
-        recordButton.title = isRecording ? "Press keys…" : "Record"
+        updateLocalization()
         if isRecording { startMonitoring() } else { stopMonitoring() }
     }
 
@@ -86,8 +97,8 @@ final class ShortcutRecorderWindowController: NSWindowController {
             // Esc cancels
             if Int(event.keyCode) == kVK_Escape {
                 self.isRecording = false
-                self.recordButton.title = "Record"
                 self.stopMonitoring()
+                self.updateLocalization()
                 return nil
             }
 
@@ -95,8 +106,8 @@ final class ShortcutRecorderWindowController: NSWindowController {
             let modifiers = self.carbonModifiers(from: event.modifierFlags)
 
             self.isRecording = false
-            self.recordButton.title = "Record"
             self.stopMonitoring()
+            self.updateLocalization()
 
             self.onSave?(keyCode, modifiers)
             self.close()
@@ -168,12 +179,30 @@ final class ShortcutRecorderWindowController: NSWindowController {
         case kVK_ANSI_7: return "7"
         case kVK_ANSI_8: return "8"
         case kVK_ANSI_9: return "9"
-        case kVK_Space: return "Space"
-        case kVK_Return: return "↩"
-        case kVK_Tab: return "⇥"
+        case kVK_Space: return L("key_space")
+        case kVK_Return: return L("key_return")
+        case kVK_Tab: return L("key_tab")
         default: return "(\(keyCode))"
         }
     }
 
-    deinit { stopMonitoring() }
+    @objc private func languageDidChange() {
+        updateLocalization()
+    }
+
+    private func updateLocalization() {
+        panel.title = L("shortcut_change_title")
+        infoLabel.stringValue = L("shortcut_info")
+        if let keyCode = currentShortcutKeyCode, let modifiers = currentShortcutModifiers {
+            currentLabel.stringValue = L("shortcut_current_prefix") + formatShortcut(keyCode: keyCode, modifiers: modifiers)
+        } else {
+            currentLabel.stringValue = ""
+        }
+        recordButton.title = isRecording ? L("shortcut_press_keys") : L("shortcut_record")
+    }
+
+    deinit {
+        stopMonitoring()
+        NotificationCenter.default.removeObserver(self)
+    }
 }

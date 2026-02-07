@@ -1,7 +1,7 @@
 import AppKit
 
 final class MicrophoneVolumeMenuView: NSView {
-    private let label = NSTextField(labelWithString: "Volume")
+    private let label = NSTextField(labelWithString: "")
     private let slider = NSSlider(value: 0.5, minValue: 0.0, maxValue: 1.0, target: nil, action: nil)
 
     var onChange: ((Float, Bool) -> Void)?
@@ -9,6 +9,7 @@ final class MicrophoneVolumeMenuView: NSView {
     init(volume: Float, isEnabled: Bool) {
         super.init(frame: NSRect(x: 0, y: 0, width: 240, height: 28))
 
+        label.stringValue = L("label_volume")
         label.font = NSFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = NSColor.secondaryLabelColor
 
@@ -46,6 +47,10 @@ final class MicrophoneVolumeMenuView: NSView {
 
     func setEnabled(_ enabled: Bool) {
         slider.isEnabled = enabled
+    }
+
+    func setLabel(_ text: String) {
+        label.stringValue = text
     }
 
     @objc private func sliderChanged() {

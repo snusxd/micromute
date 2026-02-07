@@ -3,13 +3,18 @@ import AppKit
 final class MuteIndicatorWindowController: NSObject {
     enum Status { case on, off }
 
-    // Change window size here (width/height):
-    private static let windowSize = NSSize(width: 96, height: 48)
+    // Change window size here (min width / fixed height):
+    private static let minWidth: CGFloat = 96
+    private static let windowHeight: CGFloat = 48
 
     private let panel: NSPanel
     private let blurView: NSVisualEffectView
     private let imageView: NSImageView
     private let label: NSTextField
+    private let stack: NSStackView
+
+    private static let hPad: CGFloat = 14
+    private static let vPad: CGFloat = 8
 
     private var hideWorkItem: DispatchWorkItem?
     private var token: UInt64 = 0
@@ -18,7 +23,7 @@ final class MuteIndicatorWindowController: NSObject {
 
     override init() {
         self.panel = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: Self.windowSize.width, height: Self.windowSize.height),
+            contentRect: NSRect(x: 0, y: 0, width: Self.minWidth, height: Self.windowHeight),
             styleMask: [.borderless, .nonactivatingPanel],
             backing: .buffered,
             defer: false
@@ -27,6 +32,7 @@ final class MuteIndicatorWindowController: NSObject {
         self.blurView = NSVisualEffectView()
         self.imageView = NSImageView(frame: .zero)
         self.label = NSTextField(labelWithString: "")
+        self.stack = NSStackView()
 
         super.init()
         setupWindow()
@@ -92,14 +98,19 @@ final class MuteIndicatorWindowController: NSObject {
         imageView.imageScaling = .scaleProportionallyDown
 
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.alignment = .left
+        label.alignment = .center
         label.font = NSFont.systemFont(ofSize: 14, weight: .regular)
+        label.lineBreakMode = .byClipping
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
 
-        let stack = NSStackView(views: [imageView, label])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.orientation = .horizontal
         stack.alignment = .centerY
         stack.spacing = 5 // gap between icon and ON/OFF
+        stack.setHuggingPriority(.required, for: .horizontal)
+
+        stack.addArrangedSubview(imageView)
+        stack.addArrangedSubview(label)
 
         let content = NSView()
         content.wantsLayer = true
@@ -114,6 +125,10 @@ final class MuteIndicatorWindowController: NSObject {
 
             stack.centerXAnchor.constraint(equalTo: blurView.centerXAnchor),
             stack.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
+            stack.leadingAnchor.constraint(greaterThanOrEqualTo: blurView.leadingAnchor, constant: Self.hPad),
+            stack.trailingAnchor.constraint(lessThanOrEqualTo: blurView.trailingAnchor, constant: -Self.hPad),
+            stack.topAnchor.constraint(greaterThanOrEqualTo: blurView.topAnchor, constant: Self.vPad),
+            stack.bottomAnchor.constraint(lessThanOrEqualTo: blurView.bottomAnchor, constant: -Self.vPad),
 
             imageView.widthAnchor.constraint(equalToConstant: 22),
             imageView.heightAnchor.constraint(equalToConstant: 22),
@@ -131,7 +146,8 @@ final class MuteIndicatorWindowController: NSObject {
         img.isTemplate = true
         imageView.image = img
 
-        label.stringValue = (status == .off) ? "OFF" : "ON"
+        label.stringValue = (status == .off) ? L("indicator_off") : L("indicator_on")
+        updateWindowSizeForCurrentContent()
 
         updateColors()
     }
@@ -149,6 +165,13 @@ final class MuteIndicatorWindowController: NSObject {
         let y = vf.maxY - size.height - margin
 
         panel.setFrameOrigin(NSPoint(x: x, y: y))
+    }
+
+    private func updateWindowSizeForCurrentContent() {
+        stack.layoutSubtreeIfNeeded()
+        let fitting = stack.fittingSize
+        let width = max(Self.minWidth, fitting.width + (Self.hPad * 2))
+        panel.setContentSize(NSSize(width: width, height: Self.windowHeight))
     }
 
     private func showAnimated() {

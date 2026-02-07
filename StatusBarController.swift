@@ -26,6 +26,10 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     private let volumeItem: NSMenuItem
     private var volumeView: SoundVolumeMenuView?
 
+    // Language
+    private let languageRootItem: NSMenuItem
+    private let languageMenu: NSMenu
+
     private let quitItem: NSMenuItem
 
     private let onToggle: () -> Void
@@ -38,6 +42,14 @@ final class StatusBarController: NSObject, NSMenuDelegate {
 
     private let onSoundsEnabledChanged: (Bool) -> Void
     private let onVolumeChanged: (Float) -> Void
+
+    private var currentIsMuted: Bool = false
+    private var currentShortcuts: [Shortcut] = []
+    private var currentDevices: [MicrophoneInputDevice] = []
+    private var currentSelectedUID: String?
+    private var currentVolumeInfo: MicrophoneVolumeInfo?
+    private var currentSoundsEnabled: Bool = true
+    private var currentSoundVolume: Float = 0.6
 
     init(
         onToggle: @escaping () -> Void,
@@ -64,24 +76,27 @@ final class StatusBarController: NSObject, NSMenuDelegate {
 
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
-        self.toggleItem = NSMenuItem(title: "Toggle Mute", action: #selector(toggleClicked), keyEquivalent: "")
+        self.toggleItem = NSMenuItem(title: L("menu_toggle_mute"), action: #selector(toggleClicked), keyEquivalent: "")
 
-        self.shortcutsRootItem = NSMenuItem(title: "Shortcuts", action: nil, keyEquivalent: "")
-        self.shortcutsMenu = NSMenu(title: "Shortcuts")
-        self.addShortcutItem = NSMenuItem(title: "+ Add Shortcut…", action: #selector(addShortcutClicked), keyEquivalent: "")
+        self.shortcutsRootItem = NSMenuItem(title: L("menu_shortcuts"), action: nil, keyEquivalent: "")
+        self.shortcutsMenu = NSMenu(title: L("menu_shortcuts"))
+        self.addShortcutItem = NSMenuItem(title: L("menu_add_shortcut"), action: #selector(addShortcutClicked), keyEquivalent: "")
 
-        self.microphoneRootItem = NSMenuItem(title: "Microphone", action: nil, keyEquivalent: "")
-        self.microphoneMenu = NSMenu(title: "Microphone")
-        self.micInputRootItem = NSMenuItem(title: "Devices", action: nil, keyEquivalent: "")
-        self.micInputMenu = NSMenu(title: "Devices")
+        self.microphoneRootItem = NSMenuItem(title: L("menu_microphone"), action: nil, keyEquivalent: "")
+        self.microphoneMenu = NSMenu(title: L("menu_microphone"))
+        self.micInputRootItem = NSMenuItem(title: L("menu_devices"), action: nil, keyEquivalent: "")
+        self.micInputMenu = NSMenu(title: L("menu_devices"))
         self.micVolumeItem = NSMenuItem()
 
-        self.soundsRootItem = NSMenuItem(title: "Sounds", action: nil, keyEquivalent: "")
-        self.soundsMenu = NSMenu(title: "Sounds")
-        self.soundsEnabledItem = NSMenuItem(title: "Sounds", action: #selector(toggleSoundsEnabled), keyEquivalent: "")
+        self.soundsRootItem = NSMenuItem(title: L("menu_sounds"), action: nil, keyEquivalent: "")
+        self.soundsMenu = NSMenu(title: L("menu_sounds"))
+        self.soundsEnabledItem = NSMenuItem(title: L("menu_sounds_enabled"), action: #selector(toggleSoundsEnabled), keyEquivalent: "")
         self.volumeItem = NSMenuItem()
 
-        self.quitItem = NSMenuItem(title: "Quit", action: #selector(quitClicked), keyEquivalent: "q")
+        self.languageRootItem = NSMenuItem(title: L("menu_language"), action: nil, keyEquivalent: "")
+        self.languageMenu = NSMenu(title: L("menu_language"))
+
+        self.quitItem = NSMenuItem(title: L("menu_quit"), action: #selector(quitClicked), keyEquivalent: "q")
 
         super.init()
 
@@ -98,6 +113,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         micInputRootItem.submenu = micInputMenu
 
         soundsRootItem.submenu = soundsMenu
+        languageRootItem.submenu = languageMenu
 
         let menu = NSMenu()
         menu.addItem(toggleItem)
@@ -105,6 +121,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         menu.addItem(shortcutsRootItem)
         menu.addItem(microphoneRootItem)
         menu.addItem(soundsRootItem)
+        menu.addItem(languageRootItem)
         menu.addItem(.separator())
         menu.addItem(quitItem)
 
@@ -112,32 +129,51 @@ final class StatusBarController: NSObject, NSMenuDelegate {
 
         if let button = statusItem.button {
             button.imagePosition = .imageOnly
-            button.toolTip = "Mic Mute"
+            button.toolTip = L("tooltip_mic_mute")
         }
 
         rebuildShortcutsMenu([])
         rebuildMicrophoneMenu(devices: [], selectedUID: nil, volumeInfo: nil)
         rebuildSoundsMenu(isEnabled: true, volume: 0.6)
+        rebuildLanguageMenu()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(languageDidChange),
+            name: LanguageManager.didChangeNotification,
+            object: nil
+        )
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Public updates
 
     func update(isMuted: Bool) {
+        currentIsMuted = isMuted
         let assets = MicMuteAssets.shared
         statusItem.button?.image = isMuted ? assets.trayMuted : assets.trayUnmuted
-        toggleItem.title = isMuted ? "Unmute Microphone" : "Mute Microphone"
-        statusItem.button?.toolTip = isMuted ? "Microphone: Muted" : "Microphone: On"
+        toggleItem.title = isMuted ? L("action_unmute_microphone") : L("action_mute_microphone")
+        statusItem.button?.toolTip = isMuted ? L("tooltip_microphone_muted") : L("tooltip_microphone_on")
     }
 
     func updateShortcuts(_ shortcuts: [Shortcut]) {
+        currentShortcuts = shortcuts
         rebuildShortcutsMenu(shortcuts)
     }
 
     func updateMicrophone(devices: [MicrophoneInputDevice], selectedUID: String?, volumeInfo: MicrophoneVolumeInfo?) {
+        currentDevices = devices
+        currentSelectedUID = selectedUID
+        currentVolumeInfo = volumeInfo
         rebuildMicrophoneMenu(devices: devices, selectedUID: selectedUID, volumeInfo: volumeInfo)
     }
 
     func updateSounds(isEnabled: Bool, volume: Float) {
+        currentSoundsEnabled = isEnabled
+        currentSoundVolume = volume
         soundsEnabledItem.state = isEnabled ? .on : .off
         volumeView?.setVolume(volume)
         volumeView?.setEnabled(isEnabled)
@@ -157,7 +193,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         shortcutsMenu.removeAllItems()
 
         if shortcuts.isEmpty {
-            let empty = NSMenuItem(title: "No shortcuts", action: nil, keyEquivalent: "")
+            let empty = NSMenuItem(title: L("menu_no_shortcuts"), action: nil, keyEquivalent: "")
             empty.isEnabled = false
             shortcutsMenu.addItem(empty)
         } else {
@@ -180,7 +216,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         // Input submenu
         micInputMenu.removeAllItems()
         if devices.isEmpty {
-            let empty = NSMenuItem(title: "No input devices", action: nil, keyEquivalent: "")
+            let empty = NSMenuItem(title: L("menu_no_input_devices"), action: nil, keyEquivalent: "")
             empty.isEnabled = false
             micInputMenu.addItem(empty)
         } else {
@@ -223,6 +259,66 @@ final class StatusBarController: NSObject, NSMenuDelegate {
 
         volumeItem.view = view
         soundsMenu.addItem(volumeItem)
+    }
+
+    private func rebuildLanguageMenu() {
+        languageMenu.removeAllItems()
+
+        let langs = LanguageManager.shared.availableLanguages()
+        if langs.isEmpty {
+            let empty = NSMenuItem(title: L("menu_language"), action: nil, keyEquivalent: "")
+            empty.isEnabled = false
+            languageMenu.addItem(empty)
+            return
+        }
+
+        for lang in langs {
+            let item = NSMenuItem(title: lang.name, action: #selector(selectLanguage(_:)), keyEquivalent: "")
+            item.target = self
+            item.representedObject = lang.code
+            item.state = (lang.code == LanguageManager.shared.currentCode) ? .on : .off
+            languageMenu.addItem(item)
+        }
+    }
+
+    @objc private func selectLanguage(_ sender: NSMenuItem) {
+        guard let code = sender.representedObject as? String else { return }
+        LanguageManager.shared.setCurrent(code: code)
+    }
+
+    @objc private func languageDidChange() {
+        refreshLocalization()
+    }
+
+    private func refreshLocalization() {
+        shortcutsRootItem.title = L("menu_shortcuts")
+        shortcutsMenu.title = L("menu_shortcuts")
+        addShortcutItem.title = L("menu_add_shortcut")
+
+        microphoneRootItem.title = L("menu_microphone")
+        microphoneMenu.title = L("menu_microphone")
+        micInputRootItem.title = L("menu_devices")
+        micInputMenu.title = L("menu_devices")
+
+        soundsRootItem.title = L("menu_sounds")
+        soundsMenu.title = L("menu_sounds")
+        soundsEnabledItem.title = L("menu_sounds_enabled")
+
+        languageRootItem.title = L("menu_language")
+        languageMenu.title = L("menu_language")
+
+        quitItem.title = L("menu_quit")
+
+        toggleItem.title = currentIsMuted ? L("action_unmute_microphone") : L("action_mute_microphone")
+        statusItem.button?.toolTip = currentIsMuted ? L("tooltip_microphone_muted") : L("tooltip_microphone_on")
+
+        micVolumeView?.setLabel(L("label_volume"))
+        volumeView?.setLabel(L("label_volume"))
+
+        rebuildShortcutsMenu(currentShortcuts)
+        rebuildMicrophoneMenu(devices: currentDevices, selectedUID: currentSelectedUID, volumeInfo: currentVolumeInfo)
+        rebuildSoundsMenu(isEnabled: currentSoundsEnabled, volume: currentSoundVolume)
+        rebuildLanguageMenu()
     }
 
     // MARK: - Actions
