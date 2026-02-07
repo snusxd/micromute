@@ -106,6 +106,11 @@ final class LanguageManager {
             return cwdURL
         }
 
+        let assetsURL = URL(fileURLWithPath: fm.currentDirectoryPath).appendingPathComponent("assets/langs")
+        if fm.fileExists(atPath: assetsURL.path) {
+            return assetsURL
+        }
+
         return nil
     }
 

@@ -33,28 +33,28 @@
 
 /* Begin PBXFileReference section */
 		EAB3F9BD2F377AB10035BAD7 /* micromute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = micromute.app; path = /Users/snus/code/micromute/micromute/build/Debug/micromute.app; sourceTree = "<absolute>"; };
-		EAB3F9D12F377CF30035BAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EAB3F9D32F377CF30035BAD7 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
-		EAB3F9D42F377CF30035BAD7 /* MicMuteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMuteController.swift; sourceTree = "<group>"; };
-		EAB3F9D52F377CF30035BAD7 /* micromuteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = micromuteApp.swift; sourceTree = "<group>"; };
-		EAB3FA012F3784560035BAD7 /* MicMuteAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMuteAssets.swift; sourceTree = "<group>"; };
-		EAB3FA052F3784820035BAD7 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		EAB3FA072F37848E0035BAD7 /* MuteIndicatorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteIndicatorWindowController.swift; sourceTree = "<group>"; };
-		EAB3FA092F3784A10035BAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EAB3FA0B2F378AE20035BAD7 /* HotKeyPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyPrefs.swift; sourceTree = "<group>"; };
-		EAB3FA0D2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderWindowController.swift; sourceTree = "<group>"; };
-		EAB3FA0F2F378DDB0035BAD7 /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
-		EAB3FA112F378DE70035BAD7 /* ShortcutStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutStore.swift; sourceTree = "<group>"; };
-		EAB3FA132F3790870035BAD7 /* SoundPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPrefs.swift; sourceTree = "<group>"; };
-		EAB3FA152F3790910035BAD7 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		EAB3FA172F37909C0035BAD7 /* SoundVolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundVolumeMenuView.swift; sourceTree = "<group>"; };
-		EAB3FA192F37A6E00035BAD7 /* MicrophonePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePrefs.swift; sourceTree = "<group>"; };
-		EAB3FA1B2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneDeviceManager.swift; sourceTree = "<group>"; };
-		EAB3FA1D2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneVolumeMenuView.swift; sourceTree = "<group>"; };
-		EAB3FA2B2F37B100035BAD7 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
-		EAB3FA2D2F37B100035BAD7 /* LanguagePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePrefs.swift; sourceTree = "<group>"; };
-		EAB3FA2F2F37B100035BAD7 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
-		EAB3FA312F37B100035BAD7 /* langs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = langs; sourceTree = "<group>"; };
+		EAB3F9D12F377CF30035BAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets/Assets.xcassets; sourceTree = "<group>"; };
+		EAB3F9D32F377CF30035BAD7 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/HotKeyManager.swift; sourceTree = "<group>"; };
+		EAB3F9D42F377CF30035BAD7 /* MicMuteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/MicMuteController.swift; sourceTree = "<group>"; };
+		EAB3F9D52F377CF30035BAD7 /* micromuteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/micromuteApp.swift; sourceTree = "<group>"; };
+		EAB3FA012F3784560035BAD7 /* MicMuteAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/MicMuteAssets.swift; sourceTree = "<group>"; };
+		EAB3FA052F3784820035BAD7 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/StatusBarController.swift; sourceTree = "<group>"; };
+		EAB3FA072F37848E0035BAD7 /* MuteIndicatorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/MuteIndicatorWindowController.swift; sourceTree = "<group>"; };
+		EAB3FA092F3784A10035BAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/AppDelegate.swift; sourceTree = "<group>"; };
+		EAB3FA0B2F378AE20035BAD7 /* HotKeyPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/HotKeyPrefs.swift; sourceTree = "<group>"; };
+		EAB3FA0D2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/ShortcutRecorderWindowController.swift; sourceTree = "<group>"; };
+		EAB3FA0F2F378DDB0035BAD7 /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/Shortcut.swift; sourceTree = "<group>"; };
+		EAB3FA112F378DE70035BAD7 /* ShortcutStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/ShortcutStore.swift; sourceTree = "<group>"; };
+		EAB3FA132F3790870035BAD7 /* SoundPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/SoundPrefs.swift; sourceTree = "<group>"; };
+		EAB3FA152F3790910035BAD7 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/SoundManager.swift; sourceTree = "<group>"; };
+		EAB3FA172F37909C0035BAD7 /* SoundVolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/SoundVolumeMenuView.swift; sourceTree = "<group>"; };
+		EAB3FA192F37A6E00035BAD7 /* MicrophonePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/MicrophonePrefs.swift; sourceTree = "<group>"; };
+		EAB3FA1B2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/MicrophoneDeviceManager.swift; sourceTree = "<group>"; };
+		EAB3FA1D2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/MicrophoneVolumeMenuView.swift; sourceTree = "<group>"; };
+		EAB3FA2B2F37B100035BAD7 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/LanguageManager.swift; sourceTree = "<group>"; };
+		EAB3FA2D2F37B100035BAD7 /* LanguagePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/LanguagePrefs.swift; sourceTree = "<group>"; };
+		EAB3FA2F2F37B100035BAD7 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = src/Localization.swift; sourceTree = "<group>"; };
+		EAB3FA312F37B100035BAD7 /* langs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets/langs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

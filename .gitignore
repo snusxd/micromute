@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# SwiftPM
+.build/
+.swiftpm/
+Packages/
+
+# App build artifacts
+*.app
+
+# Local tooling
+.idea/
+.vscode/
+*.swp
+*.tmp
+
+# Project-local build cache
+.derivedData/
