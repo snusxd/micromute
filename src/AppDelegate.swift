@@ -16,6 +16,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var micMenuRefreshWorkItem: DispatchWorkItem?
 
     private var statusBar: StatusBarController?
+    private var themeObserver: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -40,6 +41,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusBar?.updateShortcuts(shortcuts)
         statusBar?.updateSounds(isEnabled: sound.isEnabled, volume: sound.volume)
 
+        setupAppIcon()
         refreshMicrophoneMenu()
         registerHotKeys()
     }
@@ -158,5 +160,47 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         } catch {
             NSLog("Failed to apply saved input device: \(error)")
         }
+    }
+
+    // MARK: - App icon appearance
+
+    private func setupAppIcon() {
+        updateAppIcon()
+
+        themeObserver = DistributedNotificationCenter.default().addObserver(
+            forName: Notification.Name("AppleInterfaceThemeChangedNotification"),
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.updateAppIcon()
+        }
+    }
+
+    private func updateAppIcon() {
+        let isDark = isDarkMode()
+        let name = isDark ? "AppIconDark" : "AppIconLight"
+        if let image = NSImage(named: name) {
+            NSApp.applicationIconImage = image
+        }
+    }
+
+    private func isDarkMode() -> Bool {
+        let appearance = NSApp.effectiveAppearance
+        let name = appearance.name
+        switch name {
+        case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
+            return true
+        case .aqua, .vibrantLight, .accessibilityHighContrastAqua, .accessibilityHighContrastVibrantLight:
+            return false
+        default:
+            break
+        }
+
+        if let match = appearance.bestMatch(from: [.darkAqua, .aqua]) {
+            return match == .darkAqua
+        }
+
+        let global = UserDefaults.standard.string(forKey: "AppleInterfaceStyle")
+        return (global?.lowercased() == "dark")
     }
 }
