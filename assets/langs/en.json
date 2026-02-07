@@ -5,6 +5,7 @@
   "menu_add_shortcut": "+ Add Shortcut...",
   "menu_microphone": "Microphone",
   "menu_devices": "Devices",
+  "menu_mute_all_devices": "Mute all input devices",
   "menu_sounds": "Sounds",
   "menu_sounds_enabled": "Status sounds",
   "menu_quit": "Quit",

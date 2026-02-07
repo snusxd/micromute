@@ -30,6 +30,11 @@ final class MicMuteController {
     (try? currentIsMuted()) ?? false
   }
 
+  func isMuted(allDevices: Bool, deviceIDs: [AudioDeviceID]) -> Bool {
+    if !allDevices { return isMuted }
+    return (try? currentIsMutedAllDevices(deviceIDs: deviceIDs)) ?? false
+  }
+
   func toggleMute() {
     do {
       try toggle()
@@ -38,11 +43,82 @@ final class MicMuteController {
     }
   }
 
+  func toggleMute(allDevices: Bool, deviceIDs: [AudioDeviceID]) {
+    if !allDevices {
+      toggleMute()
+      return
+    }
+
+    do {
+      try toggleAllDevices(deviceIDs: deviceIDs)
+    } catch {
+      NSLog("MicMuteController.toggleMute(allDevices) error: \(error.localizedDescription)")
+    }
+  }
+
   // MARK: - Core logic
 
   private func currentIsMuted() throws -> Bool {
     let deviceID = try defaultInputDeviceID()
+    return try currentIsMuted(deviceID: deviceID)
+  }
 
+  private func toggle() throws {
+    let deviceID = try defaultInputDeviceID()
+    try toggleDevice(deviceID: deviceID)
+  }
+
+  private func currentIsMutedAllDevices(deviceIDs: [AudioDeviceID]) throws -> Bool {
+    let ids = deviceIDs.filter { canMute(deviceID: $0) }
+    if ids.isEmpty {
+      return try currentIsMuted()
+    }
+
+    for id in ids {
+      do {
+        if try !currentIsMuted(deviceID: id) {
+          return false
+        }
+      } catch {
+        NSLog("MicMuteController.currentIsMutedAllDevices error: \(error.localizedDescription)")
+        return false
+      }
+    }
+
+    return true
+  }
+
+  private func toggleAllDevices(deviceIDs: [AudioDeviceID]) throws {
+    let ids = deviceIDs.filter { canMute(deviceID: $0) }
+    if ids.isEmpty {
+      try toggle()
+      return
+    }
+
+    var shouldMute = false
+    for id in ids {
+      do {
+        if try !currentIsMuted(deviceID: id) {
+          shouldMute = true
+          break
+        }
+      } catch {
+        NSLog("MicMuteController.toggleAllDevices state error: \(error.localizedDescription)")
+        shouldMute = true
+        break
+      }
+    }
+
+    for id in ids {
+      do {
+        try setMuted(deviceID: id, muted: shouldMute)
+      } catch {
+        NSLog("MicMuteController.toggleAllDevices set error: \(error.localizedDescription)")
+      }
+    }
+  }
+
+  private func currentIsMuted(deviceID: AudioDeviceID) throws -> Bool {
     if supportsMute(deviceID: deviceID) {
       return try getMute(deviceID: deviceID)
     }
@@ -55,19 +131,23 @@ final class MicMuteController {
     throw MicMuteError.deviceDoesNotSupportMuteOrVolume
   }
 
-  private func toggle() throws {
-    let deviceID = try defaultInputDeviceID()
+  private func toggleDevice(deviceID: AudioDeviceID) throws {
+    let muted = try currentIsMuted(deviceID: deviceID)
+    try setMuted(deviceID: deviceID, muted: !muted)
+  }
 
+  private func setMuted(deviceID: AudioDeviceID, muted: Bool) throws {
     if supportsMute(deviceID: deviceID) {
-      let muted = try getMute(deviceID: deviceID)
-      try setMute(deviceID: deviceID, muted: !muted)
+      try setMute(deviceID: deviceID, muted: muted)
       return
     }
 
     if supportsInputVolume(deviceID: deviceID) {
-      let current = try getInputVolume(deviceID: deviceID)
-      if current > 0.000_1 {
-        lastNonZeroVolumeByDevice[deviceID] = current
+      if muted {
+        let current = try getInputVolume(deviceID: deviceID)
+        if current > 0.000_1 {
+          lastNonZeroVolumeByDevice[deviceID] = current
+        }
         try setInputVolume(deviceID: deviceID, volume: 0.0)
       } else {
         let restore = lastNonZeroVolumeByDevice[deviceID] ?? 0.7
@@ -77,6 +157,10 @@ final class MicMuteController {
     }
 
     throw MicMuteError.deviceDoesNotSupportMuteOrVolume
+  }
+
+  private func canMute(deviceID: AudioDeviceID) -> Bool {
+    supportsMute(deviceID: deviceID) || supportsInputVolume(deviceID: deviceID)
   }
 
   // MARK: - Default input device

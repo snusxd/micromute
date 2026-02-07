@@ -32,14 +32,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             onMicrophoneMenuWillOpen: { [weak self] in self?.refreshMicrophoneMenu() },
             onSelectInputUID: { [weak self] uid in self?.selectInput(uid: uid) },
             onMicVolumeChanged: { [weak self] v, isFinal in self?.setMicVolume(v, isFinal: isFinal) },
+            onMuteAllDevicesChanged: { [weak self] enabled in self?.setMuteAllDevices(enabled) },
 
             onSoundsEnabledChanged: { [weak self] enabled in self?.setSoundsEnabled(enabled) },
             onVolumeChanged: { [weak self] v in self?.setSoundVolume(v) }
         )
 
-        statusBar?.update(isMuted: mic.isMuted)
+        let allDevices = MicrophonePrefs.muteAllDevices
+        let deviceIDs = micDevices.listInputDevices().map { $0.id }
+        statusBar?.update(isMuted: mic.isMuted(allDevices: allDevices, deviceIDs: deviceIDs))
         statusBar?.updateShortcuts(shortcuts)
         statusBar?.updateSounds(isEnabled: sound.isEnabled, volume: sound.volume)
+        statusBar?.updateMuteAllDevices(isEnabled: MicrophonePrefs.muteAllDevices)
 
         setupAppIcon()
         refreshMicrophoneMenu()
@@ -49,8 +53,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
 
     private func toggleMuteAndNotify() {
-        mic.toggleMute()
-        let muted = mic.isMuted
+        let allDevices = MicrophonePrefs.muteAllDevices
+        let deviceIDs = micDevices.listInputDevices().map { $0.id }
+
+        mic.toggleMute(allDevices: allDevices, deviceIDs: deviceIDs)
+        let muted = mic.isMuted(allDevices: allDevices, deviceIDs: deviceIDs)
 
         statusBar?.update(isMuted: muted)
         indicator.show(status: muted ? .off : .on)
@@ -149,6 +156,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         micMenuRefreshWorkItem = work
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: work)
+    }
+
+    private func setMuteAllDevices(_ enabled: Bool) {
+        MicrophonePrefs.muteAllDevices = enabled
+        statusBar?.updateMuteAllDevices(isEnabled: enabled)
+
+        let deviceIDs = micDevices.listInputDevices().map { $0.id }
+        let muted = mic.isMuted(allDevices: enabled, deviceIDs: deviceIDs)
+        statusBar?.update(isMuted: muted)
     }
 
     private func applySavedInputDeviceIfPossible() {

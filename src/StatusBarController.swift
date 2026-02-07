@@ -16,6 +16,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     private let microphoneMenu: NSMenu
     private let micInputRootItem: NSMenuItem
     private let micInputMenu: NSMenu
+    private let muteAllDevicesItem: NSMenuItem
     private let micVolumeItem: NSMenuItem
     private var micVolumeView: MicrophoneVolumeMenuView?
 
@@ -39,6 +40,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     private let onMicrophoneMenuWillOpen: () -> Void
     private let onSelectInputUID: (String) -> Void
     private let onMicVolumeChanged: (Float, Bool) -> Void
+    private let onMuteAllDevicesChanged: (Bool) -> Void
 
     private let onSoundsEnabledChanged: (Bool) -> Void
     private let onVolumeChanged: (Float) -> Void
@@ -48,6 +50,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     private var currentDevices: [MicrophoneInputDevice] = []
     private var currentSelectedUID: String?
     private var currentVolumeInfo: MicrophoneVolumeInfo?
+    private var currentMuteAllDevices: Bool = false
     private var currentSoundsEnabled: Bool = true
     private var currentSoundVolume: Float = 0.6
 
@@ -59,6 +62,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         onMicrophoneMenuWillOpen: @escaping () -> Void,
         onSelectInputUID: @escaping (String) -> Void,
         onMicVolumeChanged: @escaping (Float, Bool) -> Void,
+        onMuteAllDevicesChanged: @escaping (Bool) -> Void,
 
         onSoundsEnabledChanged: @escaping (Bool) -> Void,
         onVolumeChanged: @escaping (Float) -> Void
@@ -70,6 +74,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         self.onMicrophoneMenuWillOpen = onMicrophoneMenuWillOpen
         self.onSelectInputUID = onSelectInputUID
         self.onMicVolumeChanged = onMicVolumeChanged
+        self.onMuteAllDevicesChanged = onMuteAllDevicesChanged
 
         self.onSoundsEnabledChanged = onSoundsEnabledChanged
         self.onVolumeChanged = onVolumeChanged
@@ -86,6 +91,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         self.microphoneMenu = NSMenu(title: L("menu_microphone"))
         self.micInputRootItem = NSMenuItem(title: L("menu_devices"), action: nil, keyEquivalent: "")
         self.micInputMenu = NSMenu(title: L("menu_devices"))
+        self.muteAllDevicesItem = NSMenuItem(title: L("menu_mute_all_devices"), action: #selector(toggleMuteAllDevices), keyEquivalent: "")
         self.micVolumeItem = NSMenuItem()
 
         self.soundsRootItem = NSMenuItem(title: L("menu_sounds"), action: nil, keyEquivalent: "")
@@ -105,6 +111,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         quitItem.target = self
 
         soundsEnabledItem.target = self
+        muteAllDevicesItem.target = self
 
         shortcutsRootItem.submenu = shortcutsMenu
 
@@ -171,6 +178,11 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         rebuildMicrophoneMenu(devices: devices, selectedUID: selectedUID, volumeInfo: volumeInfo)
     }
 
+    func updateMuteAllDevices(isEnabled: Bool) {
+        currentMuteAllDevices = isEnabled
+        muteAllDevicesItem.state = isEnabled ? .on : .off
+    }
+
     func updateSounds(isEnabled: Bool, volume: Float) {
         currentSoundsEnabled = isEnabled
         currentSoundVolume = volume
@@ -230,6 +242,11 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         }
 
         microphoneMenu.addItem(micInputRootItem)
+
+        muteAllDevicesItem.state = currentMuteAllDevices ? .on : .off
+        microphoneMenu.addItem(.separator())
+        microphoneMenu.addItem(muteAllDevicesItem)
+        microphoneMenu.addItem(.separator())
 
         // Volume slider
         let vol = volumeInfo?.volume ?? 0.5
@@ -299,6 +316,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         microphoneMenu.title = L("menu_microphone")
         micInputRootItem.title = L("menu_devices")
         micInputMenu.title = L("menu_devices")
+        muteAllDevicesItem.title = L("menu_mute_all_devices")
 
         soundsRootItem.title = L("menu_sounds")
         soundsMenu.title = L("menu_sounds")
@@ -334,6 +352,13 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     @objc private func selectInputDevice(_ sender: NSMenuItem) {
         guard let uid = sender.representedObject as? String else { return }
         onSelectInputUID(uid)
+    }
+
+    @objc private func toggleMuteAllDevices() {
+        let newValue = (muteAllDevicesItem.state != .on)
+        muteAllDevicesItem.state = newValue ? .on : .off
+        currentMuteAllDevices = newValue
+        onMuteAllDevicesChanged(newValue)
     }
 
     @objc private func toggleSoundsEnabled() {
