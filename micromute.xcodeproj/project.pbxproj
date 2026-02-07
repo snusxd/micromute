@@ -6,17 +6,48 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXFileReference section */
-		EAB3F9BD2F377AB10035BAD7 /* micromute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = micromute.app; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
+/* Begin PBXBuildFile section */
+		EAB3F9D82F377CF30035BAD7 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3F9D32F377CF30035BAD7 /* HotKeyManager.swift */; };
+		EAB3F9DA2F377CF30035BAD7 /* micromuteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3F9D52F377CF30035BAD7 /* micromuteApp.swift */; };
+		EAB3F9DC2F377FB90035BAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAB3F9D12F377CF30035BAD7 /* Assets.xcassets */; };
+		EAB3F9DD2F377FCD0035BAD7 /* MicMuteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3F9D42F377CF30035BAD7 /* MicMuteController.swift */; };
+		EAB3FA022F37845B0035BAD7 /* MicMuteAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA012F3784560035BAD7 /* MicMuteAssets.swift */; };
+		EAB3FA062F3784820035BAD7 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA052F3784820035BAD7 /* StatusBarController.swift */; };
+		EAB3FA082F37848F0035BAD7 /* MuteIndicatorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA072F37848E0035BAD7 /* MuteIndicatorWindowController.swift */; };
+		EAB3FA0A2F3784A20035BAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA092F3784A10035BAD7 /* AppDelegate.swift */; };
+		EAB3FA0C2F378AE20035BAD7 /* HotKeyPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA0B2F378AE20035BAD7 /* HotKeyPrefs.swift */; };
+		EAB3FA0E2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA0D2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift */; };
+		EAB3FA102F378DDC0035BAD7 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA0F2F378DDB0035BAD7 /* Shortcut.swift */; };
+		EAB3FA122F378DE70035BAD7 /* ShortcutStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA112F378DE70035BAD7 /* ShortcutStore.swift */; };
+		EAB3FA142F3790870035BAD7 /* SoundPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA132F3790870035BAD7 /* SoundPrefs.swift */; };
+		EAB3FA162F3790920035BAD7 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA152F3790910035BAD7 /* SoundManager.swift */; };
+		EAB3FA182F37909D0035BAD7 /* SoundVolumeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA172F37909C0035BAD7 /* SoundVolumeMenuView.swift */; };
+		EAB3FA1A2F37A6E10035BAD7 /* MicrophonePrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA192F37A6E00035BAD7 /* MicrophonePrefs.swift */; };
+		EAB3FA1C2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA1B2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift */; };
+		EAB3FA1E2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB3FA1D2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift */; };
+/* End PBXBuildFile section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		EAB3F9BF2F377AB10035BAD7 /* micromute */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = micromute;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXFileReference section */
+		EAB3F9BD2F377AB10035BAD7 /* micromute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = micromute.app; path = /Users/snus/code/micromute/micromute/build/Debug/micromute.app; sourceTree = "<absolute>"; };
+		EAB3F9D12F377CF30035BAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAB3F9D32F377CF30035BAD7 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
+		EAB3F9D42F377CF30035BAD7 /* MicMuteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMuteController.swift; sourceTree = "<group>"; };
+		EAB3F9D52F377CF30035BAD7 /* micromuteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = micromuteApp.swift; sourceTree = "<group>"; };
+		EAB3FA012F3784560035BAD7 /* MicMuteAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicMuteAssets.swift; sourceTree = "<group>"; };
+		EAB3FA052F3784820035BAD7 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		EAB3FA072F37848E0035BAD7 /* MuteIndicatorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteIndicatorWindowController.swift; sourceTree = "<group>"; };
+		EAB3FA092F3784A10035BAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EAB3FA0B2F378AE20035BAD7 /* HotKeyPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyPrefs.swift; sourceTree = "<group>"; };
+		EAB3FA0D2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderWindowController.swift; sourceTree = "<group>"; };
+		EAB3FA0F2F378DDB0035BAD7 /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
+		EAB3FA112F378DE70035BAD7 /* ShortcutStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutStore.swift; sourceTree = "<group>"; };
+		EAB3FA132F3790870035BAD7 /* SoundPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPrefs.swift; sourceTree = "<group>"; };
+		EAB3FA152F3790910035BAD7 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		EAB3FA172F37909C0035BAD7 /* SoundVolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundVolumeMenuView.swift; sourceTree = "<group>"; };
+		EAB3FA192F37A6E00035BAD7 /* MicrophonePrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophonePrefs.swift; sourceTree = "<group>"; };
+		EAB3FA1B2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneDeviceManager.swift; sourceTree = "<group>"; };
+		EAB3FA1D2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneVolumeMenuView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EAB3F9BA2F377AB10035BAD7 /* Frameworks */ = {
@@ -32,17 +63,25 @@
 		EAB3F9B42F377AB10035BAD7 = {
 			isa = PBXGroup;
 			children = (
-				EAB3F9BF2F377AB10035BAD7 /* micromute */,
-				EAB3F9BE2F377AB10035BAD7 /* Products */,
+				EAB3F9D12F377CF30035BAD7 /* Assets.xcassets */,
+				EAB3FA192F37A6E00035BAD7 /* MicrophonePrefs.swift */,
+				EAB3FA1B2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift */,
+				EAB3FA1D2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift */,
+				EAB3F9D32F377CF30035BAD7 /* HotKeyManager.swift */,
+				EAB3F9D42F377CF30035BAD7 /* MicMuteController.swift */,
+				EAB3FA012F3784560035BAD7 /* MicMuteAssets.swift */,
+				EAB3F9D52F377CF30035BAD7 /* micromuteApp.swift */,
+				EAB3FA052F3784820035BAD7 /* StatusBarController.swift */,
+				EAB3FA072F37848E0035BAD7 /* MuteIndicatorWindowController.swift */,
+				EAB3FA0F2F378DDB0035BAD7 /* Shortcut.swift */,
+				EAB3FA112F378DE70035BAD7 /* ShortcutStore.swift */,
+				EAB3FA132F3790870035BAD7 /* SoundPrefs.swift */,
+				EAB3FA152F3790910035BAD7 /* SoundManager.swift */,
+				EAB3FA172F37909C0035BAD7 /* SoundVolumeMenuView.swift */,
+				EAB3FA0B2F378AE20035BAD7 /* HotKeyPrefs.swift */,
+				EAB3FA0D2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift */,
+				EAB3FA092F3784A10035BAD7 /* AppDelegate.swift */,
 			);
-			sourceTree = "<group>";
-		};
-		EAB3F9BE2F377AB10035BAD7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EAB3F9BD2F377AB10035BAD7 /* micromute.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +98,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				EAB3F9BF2F377AB10035BAD7 /* micromute */,
 			);
 			name = micromute;
 			packageProductDependencies = (
@@ -95,7 +131,7 @@
 			mainGroup = EAB3F9B42F377AB10035BAD7;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = EAB3F9BE2F377AB10035BAD7 /* Products */;
+			productRefGroup = EAB3F9B42F377AB10035BAD7;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -109,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB3F9DC2F377FB90035BAD7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +156,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB3FA0C2F378AE20035BAD7 /* HotKeyPrefs.swift in Sources */,
+				EAB3FA1E2F37A6FA0035BAD7 /* MicrophoneVolumeMenuView.swift in Sources */,
+				EAB3FA082F37848F0035BAD7 /* MuteIndicatorWindowController.swift in Sources */,
+				EAB3FA1A2F37A6E10035BAD7 /* MicrophonePrefs.swift in Sources */,
+				EAB3F9DD2F377FCD0035BAD7 /* MicMuteController.swift in Sources */,
+				EAB3FA0E2F378AF20035BAD7 /* ShortcutRecorderWindowController.swift in Sources */,
+				EAB3FA162F3790920035BAD7 /* SoundManager.swift in Sources */,
+				EAB3FA142F3790870035BAD7 /* SoundPrefs.swift in Sources */,
+				EAB3FA1C2F37A6EB0035BAD7 /* MicrophoneDeviceManager.swift in Sources */,
+				EAB3FA022F37845B0035BAD7 /* MicMuteAssets.swift in Sources */,
+				EAB3F9D82F377CF30035BAD7 /* HotKeyManager.swift in Sources */,
+				EAB3FA0A2F3784A20035BAD7 /* AppDelegate.swift in Sources */,
+				EAB3FA062F3784820035BAD7 /* StatusBarController.swift in Sources */,
+				EAB3FA122F378DE70035BAD7 /* ShortcutStore.swift in Sources */,
+				EAB3FA182F37909D0035BAD7 /* SoundVolumeMenuView.swift in Sources */,
+				EAB3F9DA2F377CF30035BAD7 /* micromuteApp.swift in Sources */,
+				EAB3FA102F378DDC0035BAD7 /* Shortcut.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
