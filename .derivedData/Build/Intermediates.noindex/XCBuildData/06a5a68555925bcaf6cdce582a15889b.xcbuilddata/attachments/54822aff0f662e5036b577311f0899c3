@@ -1,0 +1,189 @@
+{
+  "" : {
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromute-primary.dia",
+    "emit-module-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromute-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromute-primary-emit-module.dia",
+    "pch" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromute-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromute-primary.swiftdeps"
+  },
+  "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/AppDelegate.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/HotKeyManager.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyManager~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/HotKeyPrefs.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/HotKeyPrefs~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/MicMuteAssets.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteAssets~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/MicMuteController.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicMuteController~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/MicrophoneDeviceManager.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneDeviceManager~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/MicrophonePrefs.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophonePrefs~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/MicrophoneVolumeMenuView.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MicrophoneVolumeMenuView~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/MuteIndicatorWindowController.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/MuteIndicatorWindowController~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/Shortcut.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/Shortcut~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/ShortcutRecorderWindowController.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutRecorderWindowController~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/ShortcutStore.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/ShortcutStore~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/SoundManager.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundManager~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/SoundPrefs.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundPrefs~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/SoundVolumeMenuView.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/SoundVolumeMenuView~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/StatusBarController.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/StatusBarController~partial.swiftmodule"
+  },
+  "/Users/snus/code/micromute/micromute/micromuteApp.swift" : {
+    "const-values" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.swiftconstvalues",
+    "dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.d",
+    "diagnostics" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.dia",
+    "index-unit-output-path" : "/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.o",
+    "llvm-bc" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.bc",
+    "object" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.o",
+    "swift-dependencies" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp.swiftdeps",
+    "swiftmodule" : "/Users/snus/code/micromute/micromute/.derivedData/Build/Intermediates.noindex/micromute.build/Debug/micromute.build/Objects-normal/arm64/micromuteApp~partial.swiftmodule"
+  }
+}

@@ -6,13 +6,14 @@ final class SoundVolumeMenuView: NSView {
 
     var onChange: ((Float) -> Void)?
 
-    init(volume: Float) {
+    init(volume: Float, isEnabled: Bool) {
         super.init(frame: NSRect(x: 0, y: 0, width: 220, height: 28))
 
         label.font = NSFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = NSColor.secondaryLabelColor
 
         slider.doubleValue = Double(max(0, min(volume, 1)))
+        slider.isEnabled = isEnabled
 
         // Make slider update continuously while dragging.
         slider.isContinuous = true
@@ -41,6 +42,10 @@ final class SoundVolumeMenuView: NSView {
 
     func setVolume(_ v: Float) {
         slider.doubleValue = Double(max(0, min(v, 1)))
+    }
+
+    func setEnabled(_ enabled: Bool) {
+        slider.isEnabled = enabled
     }
 
     @objc private func sliderChanged() {

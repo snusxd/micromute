@@ -4,7 +4,7 @@ final class MicrophoneVolumeMenuView: NSView {
     private let label = NSTextField(labelWithString: "Volume")
     private let slider = NSSlider(value: 0.5, minValue: 0.0, maxValue: 1.0, target: nil, action: nil)
 
-    var onChange: ((Float) -> Void)?
+    var onChange: ((Float, Bool) -> Void)?
 
     init(volume: Float, isEnabled: Bool) {
         super.init(frame: NSRect(x: 0, y: 0, width: 240, height: 28))
@@ -49,6 +49,8 @@ final class MicrophoneVolumeMenuView: NSView {
     }
 
     @objc private func sliderChanged() {
-        onChange?(Float(slider.doubleValue))
+        let type = NSApp.currentEvent?.type
+        let isFinal = (type == .leftMouseUp || type == .rightMouseUp || type == .otherMouseUp || type == .keyUp)
+        onChange?(Float(slider.doubleValue), isFinal)
     }
 }

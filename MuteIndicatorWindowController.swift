@@ -7,11 +7,14 @@ final class MuteIndicatorWindowController: NSObject {
     private static let windowSize = NSSize(width: 96, height: 48)
 
     private let panel: NSPanel
+    private let blurView: NSVisualEffectView
     private let imageView: NSImageView
     private let label: NSTextField
 
     private var hideWorkItem: DispatchWorkItem?
     private var token: UInt64 = 0
+    private var currentStatus: Status = .on
+    private var appearanceObservation: NSKeyValueObservation?
 
     override init() {
         self.panel = NSPanel(
@@ -21,12 +24,17 @@ final class MuteIndicatorWindowController: NSObject {
             defer: false
         )
 
+        self.blurView = NSVisualEffectView()
         self.imageView = NSImageView(frame: .zero)
         self.label = NSTextField(labelWithString: "")
 
         super.init()
         setupWindow()
         setupUI()
+        updateTheme()
+        appearanceObservation = NSApp.observe(\.effectiveAppearance, options: [.new]) { [weak self] _, _ in
+            self?.updateTheme()
+        }
     }
 
     func show(status: Status) {
@@ -39,11 +47,12 @@ final class MuteIndicatorWindowController: NSObject {
 
         apply(status: status)
         moveToCursorScreenTopCenter()
+        updateTheme()
 
-        // Cancel any in-flight view animations and reset opacity immediately.
-        if let cv = panel.contentView {
-            cv.layer?.removeAllAnimations()
-            cv.alphaValue = 1
+        // Cancel any in-flight window alpha animations and reset immediately.
+        NSAnimationContext.runAnimationGroup { ctx in
+            ctx.duration = 0
+            panel.animator().alphaValue = 1
         }
 
         showAnimated()
@@ -67,20 +76,17 @@ final class MuteIndicatorWindowController: NSObject {
         panel.hidesOnDeactivate = false
         panel.isMovable = false
 
-        // Keep window alpha stable; we animate contentView alpha instead.
         panel.alphaValue = 1
         panel.sharingType = .none
     }
 
     private func setupUI() {
-        let blur = NSVisualEffectView()
-        blur.translatesAutoresizingMaskIntoConstraints = false
-        blur.material = .hudWindow
-        blur.blendingMode = .withinWindow
-        blur.state = .active
-        blur.wantsLayer = true
-        blur.layer?.cornerRadius = 16
-        blur.layer?.masksToBounds = true
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.blendingMode = .withinWindow
+        blurView.state = .active
+        blurView.wantsLayer = true
+        blurView.layer?.cornerRadius = 16
+        blurView.layer?.masksToBounds = true
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.imageScaling = .scaleProportionallyDown
@@ -97,19 +103,17 @@ final class MuteIndicatorWindowController: NSObject {
 
         let content = NSView()
         content.wantsLayer = true
-        content.alphaValue = 1
-
-        content.addSubview(blur)
-        blur.addSubview(stack)
+        content.addSubview(blurView)
+        blurView.addSubview(stack)
 
         NSLayoutConstraint.activate([
-            blur.leadingAnchor.constraint(equalTo: content.leadingAnchor),
-            blur.trailingAnchor.constraint(equalTo: content.trailingAnchor),
-            blur.topAnchor.constraint(equalTo: content.topAnchor),
-            blur.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            blurView.topAnchor.constraint(equalTo: content.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: content.bottomAnchor),
 
-            stack.centerXAnchor.constraint(equalTo: blur.centerXAnchor),
-            stack.centerYAnchor.constraint(equalTo: blur.centerYAnchor),
+            stack.centerXAnchor.constraint(equalTo: blurView.centerXAnchor),
+            stack.centerYAnchor.constraint(equalTo: blurView.centerYAnchor),
 
             imageView.widthAnchor.constraint(equalToConstant: 22),
             imageView.heightAnchor.constraint(equalToConstant: 22),
@@ -119,6 +123,7 @@ final class MuteIndicatorWindowController: NSObject {
     }
 
     private func apply(status: Status) {
+        currentStatus = status
         let assets = MicMuteAssets.shared
 
         // OFF = muted, ON = unmuted
@@ -128,12 +133,7 @@ final class MuteIndicatorWindowController: NSObject {
 
         label.stringValue = (status == .off) ? "OFF" : "ON"
 
-        let onColor = NSColor.white
-        let offColor = NSColor.systemRed.withAlphaComponent(0.92)
-        let tint = (status == .off) ? offColor : onColor
-
-        imageView.contentTintColor = tint
-        label.textColor = tint
+        updateColors()
     }
 
     private func moveToCursorScreenTopCenter() {
@@ -152,27 +152,25 @@ final class MuteIndicatorWindowController: NSObject {
     }
 
     private func showAnimated() {
+        // Optional: quick fade-in (even if it was mid-fade).
         if !panel.isVisible {
+            panel.alphaValue = 0
             panel.orderFrontRegardless()
         }
 
-        guard let cv = panel.contentView else { return }
-
-        // Optional: quick fade-in (even if it was mid-fade).
         NSAnimationContext.runAnimationGroup { ctx in
             ctx.duration = 0.10
-            cv.animator().alphaValue = 1
+            panel.animator().alphaValue = 1
         }
     }
 
     private func hideAnimated(expectedToken: UInt64) {
         // If a newer show() happened, ignore this hide.
         guard expectedToken == token else { return }
-        guard let cv = panel.contentView else { return }
 
         NSAnimationContext.runAnimationGroup({ ctx in
             ctx.duration = 0.12
-            cv.animator().alphaValue = 0
+            panel.animator().alphaValue = 0
         }, completionHandler: { [weak self] in
             guard let self else { return }
             // If state changed during fade-out, do nothing.
@@ -180,7 +178,39 @@ final class MuteIndicatorWindowController: NSObject {
 
             self.panel.orderOut(nil)
             // Reset for the next show.
-            self.panel.contentView?.alphaValue = 1
+            self.panel.alphaValue = 1
         })
+    }
+
+    private func updateTheme() {
+        let isDark = isDarkAppearance(panel.effectiveAppearance)
+        blurView.material = isDark ? .hudWindow : .popover
+
+        updateColors()
+    }
+
+    private func updateColors() {
+        let palette = currentPalette()
+        let tint = (currentStatus == .off) ? palette.off : palette.on
+        imageView.contentTintColor = tint
+        label.textColor = tint
+    }
+
+    private func currentPalette() -> (on: NSColor, off: NSColor) {
+        let isDark = isDarkAppearance(panel.effectiveAppearance)
+        if isDark {
+            return (
+                on: NSColor(white: 0.95, alpha: 0.96),
+                off: NSColor.systemRed.withAlphaComponent(0.92)
+            )
+        }
+        return (
+            on: NSColor(white: 0.12, alpha: 0.94),
+            off: NSColor.systemRed.withAlphaComponent(0.88)
+        )
+    }
+
+    private func isDarkAppearance(_ appearance: NSAppearance) -> Bool {
+        appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
     }
 }

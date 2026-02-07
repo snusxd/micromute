@@ -34,7 +34,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
 
     private let onMicrophoneMenuWillOpen: () -> Void
     private let onSelectInputUID: (String) -> Void
-    private let onMicVolumeChanged: (Float) -> Void
+    private let onMicVolumeChanged: (Float, Bool) -> Void
 
     private let onSoundsEnabledChanged: (Bool) -> Void
     private let onVolumeChanged: (Float) -> Void
@@ -46,7 +46,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
 
         onMicrophoneMenuWillOpen: @escaping () -> Void,
         onSelectInputUID: @escaping (String) -> Void,
-        onMicVolumeChanged: @escaping (Float) -> Void,
+        onMicVolumeChanged: @escaping (Float, Bool) -> Void,
 
         onSoundsEnabledChanged: @escaping (Bool) -> Void,
         onVolumeChanged: @escaping (Float) -> Void
@@ -140,6 +140,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
     func updateSounds(isEnabled: Bool, volume: Float) {
         soundsEnabledItem.state = isEnabled ? .on : .off
         volumeView?.setVolume(volume)
+        volumeView?.setEnabled(isEnabled)
     }
 
     // MARK: - NSMenuDelegate
@@ -199,7 +200,9 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         let settable = volumeInfo?.isSettable ?? false
 
         let view = MicrophoneVolumeMenuView(volume: vol, isEnabled: settable)
-        view.onChange = { [weak self] v in self?.onMicVolumeChanged(v) }
+        view.onChange = { [weak self] v, isFinal in
+            self?.onMicVolumeChanged(v, isFinal)
+        }
         micVolumeView = view
 
         micVolumeItem.view = view
@@ -212,7 +215,7 @@ final class StatusBarController: NSObject, NSMenuDelegate {
         soundsEnabledItem.state = isEnabled ? .on : .off
         soundsMenu.addItem(soundsEnabledItem)
 
-        let view = SoundVolumeMenuView(volume: volume)
+        let view = SoundVolumeMenuView(volume: volume, isEnabled: isEnabled)
         view.onChange = { [weak self] v in
             self?.onVolumeChanged(v)
         }

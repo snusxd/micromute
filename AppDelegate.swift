@@ -30,7 +30,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
             onMicrophoneMenuWillOpen: { [weak self] in self?.refreshMicrophoneMenu() },
             onSelectInputUID: { [weak self] uid in self?.selectInput(uid: uid) },
-            onMicVolumeChanged: { [weak self] v in self?.setMicVolume(v) },
+            onMicVolumeChanged: { [weak self] v, isFinal in self?.setMicVolume(v, isFinal: isFinal) },
 
             onSoundsEnabledChanged: { [weak self] enabled in self?.setSoundsEnabled(enabled) },
             onVolumeChanged: { [weak self] v in self?.setSoundVolume(v) }
@@ -126,7 +126,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         refreshMicrophoneMenu()
     }
 
-    private func setMicVolume(_ v: Float) {
+    private func setMicVolume(_ v: Float, isFinal: Bool) {
         guard let deviceID = try? micDevices.getDefaultInputDeviceID() else { return }
 
         do {
@@ -140,11 +140,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // it replaces the slider view and breaks smooth dragging.
         // Instead refresh after the user stops moving the slider.
         micMenuRefreshWorkItem?.cancel()
+        guard isFinal else { return }
+
         let work = DispatchWorkItem { [weak self] in
             self?.refreshMicrophoneMenu()
         }
         micMenuRefreshWorkItem = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: work)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: work)
     }
 
     private func applySavedInputDeviceIfPossible() {
